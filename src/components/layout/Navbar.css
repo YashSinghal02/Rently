@@ -1,0 +1,26 @@
+.glass-navbar {
+  backdrop-filter: blur(16px);
+  transition: all 0.3s ease;
+}
+
+/* LIGHT */
+html:not(.dark) .glass-navbar {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* DARK */
+html.dark .glass-navbar {
+  background: rgba(10, 10, 20, 0.3);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+/* DROPDOWN */
+.glass-dropdown {
+  backdrop-filter: blur(14px);
+  background: rgba(20, 20, 30, 0.6);
+}
+
+.logo-navbar{
+  width: 400px;
+}
