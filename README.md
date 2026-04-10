@@ -1,31 +1,27 @@
-# Rently — Premium Car Rental (React + Redux Toolkit + Tailwind + GSAP)
+#  Rently – Car Rental Web App
 
-This is a production-style demo car rental web app built with:
+Rently is a modern car rental web application designed to provide a seamless and user-friendly booking experience. Users can explore available cars, manage bookings, and enjoy a clean, responsive interface.
 
-- **React (functional components + hooks)**
-- **Redux Toolkit** (mock auth, cars, bookings)
-- **React Router** (Home, Cars listing, Car details, Dashboard)
-- **Tailwind CSS** with **dark/light mode** persisted to `localStorage`
-- **GSAP** (page transitions, scroll reveals, micro-interactions)
-- **react-hot-toast** for notifications
+---
 
-## Run
+## ✨ Features
 
-```bash
-npm install
-npm run dev
-```
+- 🔍 Browse available cars  
+- 📅 Book cars with pickup & return dates  
+- 👤 User authentication system  
+- 📊 Dashboard to manage bookings  
+- 🌗 Light & Dark mode support  
+- ⚡ Smooth animations & responsive UI  
 
-## Build
+---
 
-```bash
-npm run build
-```
+## 🛠️ Tech Stack
 
-## Features
+- **Frontend:** React.js, Tailwind CSS  
+- **State Management:** Redux Toolkit  
+- **Animations:** Framer Motion  
+- **Icons:** Lucide React  
 
-- **Home** hero with animated headline + search (location, pickup, return) + featured cars
-- **Car Listing** filters (price/type/brand), sorting, responsive grid, skeleton loading
-- **Car Details** gallery, pricing, and **booking form** with real-time total calculation
-- **Dashboard** shows and manages the user’s mock bookings (cancel confirmed bookings)
+---
+
 
