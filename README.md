@@ -8,7 +8,6 @@ Rently is a modern car rental web application designed to provide a seamless and
 
 - 🔍 Browse available cars  
 - 📅 Book cars with pickup & return dates  
-- 👤 User authentication system  
 - 📊 Dashboard to manage bookings  
 - 🌗 Light & Dark mode support  
 - ⚡ Smooth animations & responsive UI  
