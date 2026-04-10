@@ -21,6 +21,10 @@ html.dark .glass-navbar {
   background: rgba(20, 20, 30, 0.6);
 }
 
-.logo-navbar{
-  width: 400px;
+.logo-navbar {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
 }

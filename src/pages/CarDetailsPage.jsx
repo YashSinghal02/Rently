@@ -87,11 +87,17 @@ export function CarDetailsPage() {
         </div>
 
         <div className="flex items-center gap-2">
-          <Button variant="secondary" onClick={() => navigate('/cars')}>
-            Back
-          </Button>
+          <Button
+    variant="ghost"
+    onClick={() => navigate('/cars')}
+    
+  >
+    Back
+  </Button>
           <Button
             variant="ghost"
+            className="text-zinc-700 dark:text-zinc-300 
+               hover:bg-zinc-100 dark:hover:bg-white/10"
             onClick={() =>
               toast(canBookNow ? 'You’re ready to book.' : 'Sign in to book this car.')
             }
@@ -110,14 +116,14 @@ export function CarDetailsPage() {
           <div className="card rounded-3xl p-6" data-details-reveal>
             <div className="flex items-start justify-between gap-4">
               <div>
-                <div className="text-sm font-semibold text-zinc-100">Highlights</div>
-                <div className="mt-1 text-xs text-zinc-100/70">
+                <div className="text-sm font-semibold text-zinc-900 dark:text-white ">Highlights</div>
+                <div className="mt-1 text-xs text-zinc-900 dark:text-zinc-100/90">
                   Premium features that make every drive feel special.
                 </div>
               </div>
               <div className="text-right">
-                <div className="text-xs text-zinc-100/70">Daily price</div>
-                <div className="text-xl font-semibold text-zinc-50">${car.dailyPrice}/day</div>
+                <div className="text-xs text-zinc-900 dark:text-zinc-100/70">Daily price</div>
+                <div className="text-xl font-semibold text-zinc-900 dark:text-zinc-50">${car.dailyPrice}/day</div>
               </div>
             </div>
 
@@ -125,7 +131,7 @@ export function CarDetailsPage() {
               {car.highlights.map((h) => (
                 <span
                   key={h}
-                  className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs text-zinc-100/80"
+                  className="rounded-xl border  dark:border-white/10 bg-black/5 dark:bg-white/5 px-3 py-2 text-xs text-zinc-900 dark:text-zinc-100/80"
                 >
                   {h}
                 </span>
@@ -136,7 +142,7 @@ export function CarDetailsPage() {
               {car.features.map((f) => (
                 <div
                   key={f}
-                  className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100/85"
+                  className="rounded-2xl border dark:border-white/10 bg-black/5 dark:bg-white/5 px-4 py-3 text-sm  text-zinc-900 dark:text-zinc-100/80"
                 >
                   {f}
                 </div>

@@ -1,6 +1,29 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { bookingsMock } from '../../data/bookingsMock.js'
 
+const BOOKINGS_STORAGE_KEY = 'rently_bookings_v1'
+
+const loadPersistedBookings = () => {
+  if (typeof window === 'undefined') return []
+  try {
+    const raw = window.localStorage.getItem(BOOKINGS_STORAGE_KEY)
+    if (!raw) return []
+    const parsed = JSON.parse(raw)
+    return Array.isArray(parsed) ? parsed : []
+  } catch {
+    return []
+  }
+}
+
+const persistBookings = (items) => {
+  if (typeof window === 'undefined') return
+  try {
+    window.localStorage.setItem(BOOKINGS_STORAGE_KEY, JSON.stringify(items))
+  } catch {
+    // Ignore persistence issues in mock mode.
+  }
+}
+
 const calculateDays = (pickupDate, returnDate) => {
   const p = new Date(pickupDate)
   const r = new Date(returnDate)
@@ -47,7 +70,7 @@ export const createBooking = createAsyncThunk(
 const bookingsSlice = createSlice({
   name: 'bookings',
   initialState: {
-    items: [],
+    items: loadPersistedBookings(),
     status: 'idle',
     error: null,
   },
@@ -55,7 +78,10 @@ const bookingsSlice = createSlice({
     cancelBooking(state, action) {
       const id = action.payload
       const idx = state.items.findIndex((b) => b.id === id)
-      if (idx !== -1) state.items[idx].status = 'cancelled'
+      if (idx !== -1) {
+        state.items[idx].status = 'cancelled'
+        persistBookings(state.items)
+      }
     },
   },
   extraReducers: (builder) => {
@@ -67,6 +93,7 @@ const bookingsSlice = createSlice({
       .addCase(fetchBookings.fulfilled, (state, action) => {
         state.status = 'succeeded'
         state.items = action.payload
+        persistBookings(state.items)
       })
       .addCase(fetchBookings.rejected, (state, action) => {
         state.status = 'failed'
@@ -74,6 +101,7 @@ const bookingsSlice = createSlice({
       })
       .addCase(createBooking.fulfilled, (state, action) => {
         state.items.unshift(action.payload)
+        persistBookings(state.items)
       })
   },
 })

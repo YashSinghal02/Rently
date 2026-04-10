@@ -90,7 +90,7 @@ export function BookingForm({
       toast.success('Booking confirmed')
       onBooked?.()
     } catch {
-      toast.error('Booking failed (mock)')
+      toast.error('Booking failed')
     } finally {
       setSubmitting(false)
     }
@@ -133,7 +133,7 @@ return (
       {/* INPUTS */}
       <div className="mt-5 grid gap-4 sm:grid-cols-2">
 
-        <Field label="Location">
+        <Field label="Location" className="text-sm font-semibold text-zinc-900 dark:text-white">
           <input
             className={`focus-ring w-full rounded-xl border px-4 py-3 text-sm
             bg-white text-zinc-900 border-black/10 placeholder:text-zinc-400
@@ -240,10 +240,23 @@ return (
 function Row({ label, value, emphasize = false }) {
   return (
     <div className="flex items-center justify-between gap-4">
-      <div className={`text-sm ${emphasize ? 'font-semibold text-zinc-50' : 'text-zinc-100/75'}`}>
+      <div
+        className={`text-sm ${
+          emphasize
+            ? 'font-semibold text-zinc-900 dark:text-white'
+            : 'text-zinc-700 dark:text-zinc-300'
+        }`}
+      >
         {label}
       </div>
-      <div className={`text-sm ${emphasize ? 'font-semibold text-violet-200' : 'text-zinc-100/90'}`}>
+
+      <div
+        className={`text-sm ${
+          emphasize
+            ? 'font-semibold text-zinc-900 dark:text-violet-300'
+            : 'text-zinc-900 dark:text-zinc-200'
+        }`}
+      >
         {value}
       </div>
     </div>

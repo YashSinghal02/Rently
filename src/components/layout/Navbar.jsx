@@ -7,7 +7,9 @@ import { LoginModal } from "../auth/LoginModal.jsx";
 import { Button } from "../common/Button.jsx";
 import { toast } from "react-hot-toast";
 import "./Navbar.css";
-import logo from "../../../public/assets/cars/logo.png"
+import logo from "../../assets/logo.png"
+import { Sun, Moon } from "lucide-react";
+
 
 function Avatar({ name, color }) {
   const initials = useMemo(() => {
@@ -37,7 +39,7 @@ export function Navbar() {
 
   const onToggleTheme = () => {
     dispatch(themeActions.toggleTheme());
-    toast("Theme updated", { icon: "✨" });
+    toast.success("Theme updated");
   };
 
   const onLogout = () => {
@@ -64,7 +66,7 @@ export function Navbar() {
 
           {/* LOGO */}
           <Link to="/" className="flex items-center gap-3">
-            <div className="h-14 w-24 p-3 rounded-xl bg-violet-800/30 border border-violet-500/30 flex items-center justify-center">
+            <div className="h-14 w-24 overflow-hidden p-3 rounded-xl bg-violet-800/30 border border-violet-500/30 flex items-center justify-center">
               <img src={logo} alt="Rently logo" className="logo-navbar" />
             </div>
             <div>
@@ -82,6 +84,7 @@ export function Navbar() {
             <NavLink to="/" className={navItemClass}>Home</NavLink>
             <NavLink to="/cars" className={navItemClass}>Cars</NavLink>
             <NavLink to="/dashboard" className={navItemClass}>Dashboard</NavLink>
+            <NavLink to="/contact" className={navItemClass}>Contact</NavLink>
           </nav>
 
           {/* RIGHT SIDE */}
@@ -92,7 +95,11 @@ export function Navbar() {
               onClick={onToggleTheme}
               className="hidden sm:flex h-10 w-10 items-center justify-center rounded-xl border border-violet-400/20 bg-violet-800/20 hover:bg-violet-500/20"
             >
-              {mode === "dark" ? "🌙" : "☀️"}
+                {mode === "dark" ? (
+    <Sun className="w-5 h-5 text-yellow-400" />
+  ) : (
+    <Moon className="w-5 h-5 text-zinc-700" />
+  )}
             </button>
 
             {/* AUTH DESKTOP */}
@@ -108,7 +115,7 @@ export function Navbar() {
 
                   {menuOpen && (
                     <div className="absolute right-0 mt-2 w-56 rounded-xl glass-dropdown">
-                      <div className="p-2">
+                      <div className="p-2 border border-black/50 dark:border-white/50  bg-white/100 dark:bg-[#1a1a1adb] rounded-lg"   style={{ backdropFilter: "blur(20px)" }}>
                         <button
                           className="w-full text-left px-3 py-2 hover:bg-white/10 rounded-lg"
                           onClick={() => navigate("/dashboard")}
@@ -156,6 +163,10 @@ export function Navbar() {
       Dashboard
     </NavLink>
 
+    <NavLink to="/contact" className={navItemClass} onClick={() => setMobileOpen(false)}>
+      Contact
+    </NavLink>
+
     {/* THEME TOGGLE (MOBILE) */}
     <button
       onClick={onToggleTheme}
@@ -166,7 +177,11 @@ export function Navbar() {
         {mode === "dark" ? "Dark Mode" : "Light Mode"}
       </span>
       <span className="text-lg">
-        {mode === "dark" ? "🌙" : "☀️"}
+          {mode === "dark" ? (
+    <Sun className="w-5 h-5 text-yellow-400" />
+  ) : (
+    <Moon className="w-5 h-5 text-zinc-700" />
+  )}
       </span>
     </button>
 

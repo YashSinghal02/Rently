@@ -100,16 +100,16 @@ export function HomePage() {
               ⚡ Premium cars. Instant booking.
             </div>
 
-            <h1 className="text-4xl sm:text-5xl font-semibold leading-tight text-black dark:text-white">
-              Drive with{" "}
-              <span className="text-violet-500">
-                {splitWords("premium comfort").map(({ id, w }) => (
-                  <span key={id} data-hero-word className="inline-block mr-2">
-                    {w}
-                  </span>
-                ))}
-              </span>
-            </h1>
+   <h1 className="text-4xl sm:text-5xl font-semibold leading-tight  text-zinc-700 dark:text-white">
+  Drive with{" "}
+  <span className="bg-gradient-to-r from-purple-400 via-violet-500 to-indigo-500 bg-clip-text text-transparent">
+    premium
+  </span>{" "}
+  <br />
+  <span className="bg-gradient-to-r from-purple-400 via-violet-500 to-indigo-500 bg-clip-text text-transparent">
+    comfort
+  </span>
+</h1>
 
             <p className="text-zinc-600 dark:text-zinc-300 max-w-lg">
               Book premium cars in seconds. Choose your ride, select dates, and enjoy a seamless rental experience.
@@ -120,12 +120,12 @@ export function HomePage() {
                 Explore Cars
               </Button>
 
-              <Button
+              {/* <Button
                 variant="ghost"
                 onClick={() => toast("Smooth animations powered by GSAP ✨")}
               >
                 Experience UI
-              </Button>
+              </Button> */}
             </div>
           </div>
 
@@ -187,7 +187,7 @@ export function HomePage() {
           </div>
 
           <Button
-            variant="secondary"
+            variant="ghost"
             className="hidden md:inline-flex"
             onClick={() => navigate("/cars")}
           >

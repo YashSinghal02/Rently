@@ -45,7 +45,7 @@ export function CarCard({ car, searchParams }) {
             ${car.dailyPrice}
             <span className="text-xs text-zinc-500">/day</span>
   <br />
-  <div className="mt-2 inline-flex items-center gap-1 rounded-xl border border-white/10 bg-white/5 px-2 py-1 text-xs text-zinc-100/85 backdrop-blur">
+  <div className="mt-2 inline-flex items-center gap-1 rounded-xl border border-black/20 dark:border-white/10  bg-black/10 dark:bg-white/5  px-2 py-1 text-xs text-zinc-10 backdrop-blur">
               <span aria-hidden="true">★</span>
               <span>{car.rating.toFixed(1)}</span>
             </div>
@@ -81,7 +81,7 @@ export function CarCard({ car, searchParams }) {
           <span>
             {car.seats} seats • {car.transmission}
           </span>
-          <span className="text-violet-500 font-medium group-hover:underline">
+          <span className="text-violet-500 font-medium ">
             View details →
           </span>
         </div>

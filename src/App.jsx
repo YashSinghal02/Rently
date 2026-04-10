@@ -6,6 +6,7 @@ import { CarDetailsPage } from './pages/CarDetailsPage.jsx'
 import { DashboardPage } from './pages/DashboardPage.jsx'
 import { NotFoundPage } from './pages/NotFoundPage.jsx'
 import { PageTransition } from './ui/PageTransition.jsx'
+import Contact from './pages/Contact.jsx'
 
 export default function App() {
   const location = useLocation()
@@ -42,6 +43,14 @@ export default function App() {
           element={
             <PageTransition>
               <DashboardPage />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <PageTransition>
+              <Contact/>
             </PageTransition>
           }
         />

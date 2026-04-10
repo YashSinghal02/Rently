@@ -29,7 +29,7 @@ export function AppLayout() {
   return (
     <div className="min-h-screen bg-white dark:bg-[#070A12]">
       <Navbar />
-      <main className="relative">
+      <main className="relative overflow-x-hidden">
         <div
           ref={bgRef}
           aria-hidden="true"

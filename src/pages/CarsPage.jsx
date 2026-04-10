@@ -26,12 +26,10 @@ export function CarsPage() {
   const cars = useAppSelector(selectCars);
   const status = useAppSelector(selectCarsStatus);
 
-  // 🔍 Query params
   const queryLocation = searchParams.get("location") || "";
   const queryPickup = searchParams.get("pickup") || "";
   const queryReturn = searchParams.get("return") || "";
 
-  // 🎛️ Filters
   const [type, setType] = useState("All");
   const [brand, setBrand] = useState("All");
   const [minPrice, setMinPrice] = useState(40);
@@ -44,7 +42,6 @@ export function CarsPage() {
     }
   }, [dispatch, cars.length, status]);
 
-  // 🔹 Unique filters
   const types = useMemo(
     () => ["All", ...new Set(cars.map((c) => c.type))],
     [cars]
@@ -55,7 +52,6 @@ export function CarsPage() {
     [cars]
   );
 
-  // 🔹 Query string (for card navigation)
   const searchQueryString = useMemo(() => {
     const params = new URLSearchParams();
     if (queryLocation) params.set("location", queryLocation);
@@ -64,7 +60,6 @@ export function CarsPage() {
     return params.toString();
   }, [queryLocation, queryPickup, queryReturn]);
 
-  // 🔥 FILTER LOGIC (clean + safe)
   const filtered = useMemo(() => {
     const min = Math.min(minPrice, maxPrice);
     const max = Math.max(minPrice, maxPrice);
@@ -104,7 +99,7 @@ export function CarsPage() {
 
         <div className="flex gap-2">
           <Button
-            variant="secondary"
+            variant="ghost"
             onClick={() => navigate("/")}
             className="hidden sm:inline-flex"
           >
@@ -118,11 +113,12 @@ export function CarsPage() {
       </div>
 
       {/* MAIN GRID */}
-      <div className="grid gap-6 lg:grid-cols-[300px,1fr]">
+      <div className="grid gap-6 lg:grid-cols-[300px,1fr] items-start">
 
-        {/* FILTER PANEL */}
+        {/* ✅ FIXED FILTER PANEL */}
         <aside
-          className="rounded-3xl p-5 space-y-5 h-fit sticky top-24
+          className="rounded-3xl p-5 space-y-5 h-fit 
+          lg:sticky lg:top-24 lg:z-10
           border border-black/10 dark:border-white/10
           bg-white/70 dark:bg-white/5 backdrop-blur-xl"
         >
@@ -161,7 +157,7 @@ export function CarsPage() {
             <p className="text-xs font-medium text-zinc-600 dark:text-zinc-400">
               Car type
             </p>
-            <select value={type} onChange={(e) => setType(e.target.value)} className="input">
+            <select value={type} onChange={(e) => setType(e.target.value)} className="input border-zinc-200 dark:border-white/10 bg-white dark:bg-[#1f2229] text-zinc-900 dark:text-white">
               {types.map((t) => (
                 <option key={t}>{t}</option>
               ))}
@@ -173,7 +169,7 @@ export function CarsPage() {
             <p className="text-xs font-medium text-zinc-600 dark:text-zinc-400">
               Brand
             </p>
-            <select value={brand} onChange={(e) => setBrand(e.target.value)} className="input">
+            <select value={brand} onChange={(e) => setBrand(e.target.value)} className="input border-zinc-200 dark:border-white/10 bg-white dark:bg-[#1f2229] text-zinc-900 dark:text-white">
               {brands.map((b) => (
                 <option key={b}>{b}</option>
               ))}
@@ -185,7 +181,7 @@ export function CarsPage() {
             <p className="text-xs font-medium text-zinc-600 dark:text-zinc-400">
               Sort by
             </p>
-            <select value={sort} onChange={(e) => setSort(e.target.value)} className="input">
+            <select value={sort} onChange={(e) => setSort(e.target.value)} className="input border-zinc-200 dark:border-white/10 bg-white dark:bg-[#1f2229] text-zinc-900 dark:text-white">
               <option value="recommended">Recommended</option>
               <option value="priceLow">Price Low → High</option>
               <option value="priceHigh">Price High → Low</option>
@@ -206,7 +202,6 @@ export function CarsPage() {
           </div>
 
           <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-
             {status === "loading" ? (
               Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)
             ) : filtered.length ? (
@@ -227,7 +222,6 @@ export function CarsPage() {
                 </Button>
               </div>
             )}
-
           </div>
         </section>
       </div>
