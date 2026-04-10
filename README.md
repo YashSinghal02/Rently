@@ -22,6 +22,5 @@ Rently is a modern car rental web application designed to provide a seamless and
 - **Animations:** Framer Motion  
 - **Icons:** Lucide React  
 
----
 
 
